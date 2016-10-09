@@ -1,0 +1,16 @@
+---
+- name: "Create openstack user for cloudpulse '{{CLOUDPULSE_OPENSTACK_USER}}:{{CLOUDPULSE_OPENSTACK_PASSWD}}' "
+  command: "openstack user create {{CLOUDPULSE_OPENSTACK_USER}} --password {{CLOUDPULSE_OPENSTACK_PASSWD}} --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
+  run_once: True
+
+- name: "Adding admin role to cloudpulse user in 'service' project"
+  command: "openstack role add --project service --user {{CLOUDPULSE_OPENSTACK_USER}} admin --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
+  run_once: True
+
+- name: "Creating cloudpulse openstack service"
+  command: "openstack service create cloudpulse --description \"Openstack Health service\" --type health --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
+  run_once: True
+
+- name: "Creating cloudpulse endpoint"
+  command: "openstack endpoint create --publicurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_PUBLIC_PORT}} --internalurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_INTERNAL_PORT}} --adminurl http://ansible_ssh_host:{{CLOUDPULSE_ADMIN_PORT}} --region RegionOne cloudpulse --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
+  run_once: True

@@ -1,0 +1,38 @@
+---
+# TODO get password with lookup
+
+- name: "Create database '{{CLOUDPULSE_DATABASE}}'"
+  mysql_db:
+    login_user: "root"
+    login_password: "{{OS_PASSWORD}}"
+    name: "{{CLOUDPULSE_DATABASE}}"
+    state: present
+    encoding: utf8
+    collation: utf8_general_ci
+  run_once: True
+
+- name: "Create '{{CLOUDPULSE_DATABASE}}' database user '{{CLOUDPULSE_DATABASE_USER}}:{{CLOUDPULSE_DATABASE_PASSWD}}'"
+  mysql_user:
+    login_user: "root"
+    login_password: "{{OS_PASSWORD}}"
+    name: "{{CLOUDPULSE_DATABASE_USER}}"
+    password: "{{CLOUDPULSE_DATABASE_PASSWD}}"
+    host: "{{item}}"
+    priv: "{{CLOUDPULSE_DATABASE}}.*:ALL"
+    state: present
+  with_items:
+    - "localhost"
+    - "%"
+  run_once: True
+
+- copy: src=cloudpulse_tables.sql dest=/tmp/cloudpulse_tables.sql
+  run_once: True
+
+- name: "Create tables for database '{{CLOUDPULSE_DATABASE}}' "
+  mysql_db:
+    login_user: "root"
+    login_password: "{{OS_PASSWORD}}"
+    name: "{{CLOUDPULSE_DATABASE}}"
+    state: import
+    target: /tmp/cloudpulse_tables.sql
+  run_once: True
