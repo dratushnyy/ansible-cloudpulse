@@ -1,0 +1,12 @@
+---
+
+- name: "Cloning cloudpulse client"
+  git:
+    repo: https://github.com/openstack/python-cloudpulseclient.git
+    dest: /opt/stack/python-cloudpulseclient
+
+- name: "Install cloudpulse client dependencies"
+  pip: requirements=/opt/stack/python-cloudpulseclient/requirements.txt
+
+- name: "Install python-cloudpulse client"
+  shell: "cd /opt/stack/python-cloudpulseclient/ && python setup.py install"

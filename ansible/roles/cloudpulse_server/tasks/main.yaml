@@ -1,16 +1,15 @@
 ---
 
 - name: "Clone cloudpulse to /opt/stack/ "
-  git: repo=https://github.com/openstack/cloudpulse.git dest=/opt/stack/cloudpulse
-  become: yes
+  git:
+    repo: https://github.com/openstack/cloudpulse.git
+    dest: /opt/stack/cloudpulse
 
 - name: "Install cloudpulse requirements"
-  shell: "pip install -r /opt/stack/cloudpulse/requirements.txt"
-  become: yes
+  pip: requirements=/opt/stack/cloudpulse/requirements.txt
 
 - name: "Install cloudpulse"
   shell: "cd /opt/stack/cloudpulse/ && python setup.py install"
-  become: yes
 
 - name: "Create cloudpulse server config"
   template: src=cloudpulse.conf dest=/opt/stack/cloudpulse/etc/cloudpulse/cloudpulse.conf

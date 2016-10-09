@@ -5,6 +5,7 @@
   vars_files:
     - config.yaml
   roles:
-    - db
+    - cloudpulse_db
     - openstack_service
     - cloudpulse_server
+    - cloudpulse_client
