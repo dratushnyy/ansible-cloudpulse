@@ -6,5 +6,5 @@
     - config.yaml
   roles:
     - db
-#    - openstack_service
+    - openstack_service
     - cloudpulse_server
