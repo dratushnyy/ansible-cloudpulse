@@ -12,5 +12,5 @@
   run_once: True
 
 - name: "Creating cloudpulse endpoint"
-  command: "openstack endpoint create --publicurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_PUBLIC_PORT}} --internalurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_INTERNAL_PORT}} --adminurl http://ansible_ssh_host:{{CLOUDPULSE_ADMIN_PORT}} --region RegionOne cloudpulse --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
+  command: "openstack endpoint create --publicurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_PUBLIC_PORT}} --internalurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_INTERNAL_PORT}} --adminurl http://{{ansible_ssh_host}}:{{CLOUDPULSE_ADMIN_PORT}} --region RegionOne cloudpulse --os-project-name {{OS_PROJECT_NAME}} --os-username {{OS_USERNAME}} --os-password {{OS_PASSWORD}} --os-auth-url {{OS_AUTH_URL}}"
   run_once: True
