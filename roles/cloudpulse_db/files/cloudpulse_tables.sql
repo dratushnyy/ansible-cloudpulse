@@ -1,4 +1,4 @@
-CREATE TABLE `cpulse` (
+CREATE TABLE IF NOT EXISTS `cpulse` (
   id         INT NOT NULL AUTO_INCREMENT,
   uuid       VARBINARY(128),
   name       VARCHAR(128),
@@ -18,3 +18,5 @@ CREATE TABLE IF NOT EXISTS cpulselock (
   updated_at   TIMESTAMP    DEFAULT 0,
   PRIMARY KEY (id)
 );
+
+
