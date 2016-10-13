@@ -2,7 +2,7 @@
 
 - name: "Clone cloudpulse to /opt/stack/ "
   git:
-    repo: https://github.com/openstack/cloudpulse.git
+    repo: "{{CLOUDPULSE_REPO}}"
     dest: /opt/stack/cloudpulse
 
 - name: "Install cloudpulse requirements"
