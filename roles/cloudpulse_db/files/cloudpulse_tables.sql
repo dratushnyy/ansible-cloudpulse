@@ -19,24 +19,24 @@ CREATE TABLE IF NOT EXISTS cpulselock (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS cloudpulse_tests (
+CREATE TABLE IF NOT EXISTS cloudpulse_blueprint (
   id           INT NOT NULL AUTO_INCREMENT,
   uuid       VARBINARY(128),
   created_at   TIMESTAMP    DEFAULT current_timestamp,
   updated_at   TIMESTAMP    DEFAULT 0,
   type    VARCHAR(128),
   name    VARCHAR(128),
-  endpoint VARCHAR(128),
+  service VARCHAR(128),
   commands     TEXT,
   enabled     BOOLEAN,
 
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS service_tests (
-  id           INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS service_commands (
+  id           INT NOT NULL AUTO_INCREMENT,
   service      VARCHAR(128),
-  name         VARCHAR(128),
   command      VARCHAR(128),
+  name         VARCHAR(128),
   PRIMARY KEY (id)
 );

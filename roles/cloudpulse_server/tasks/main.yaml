@@ -1,21 +1,21 @@
 ---
 
-- name: "Clone cloudpulse to /opt/stack/ "
+- name: "Clone cloudpulse to {{OPENSTACK_DIR}} "
   git:
     repo: "{{CLOUDPULSE_REPO}}"
-    dest: /opt/stack/cloudpulse
+    dest: "{{OPENSTACK_DIR}}/cloudpulse"
 
 - name: "Install cloudpulse requirements"
-  pip: requirements=/opt/stack/cloudpulse/requirements.txt
+  pip: requirements="{{OPENSTACK_DIR}}/cloudpulse/requirements.txt"
 
 - name: "Install cloudpulse"
-  shell: "cd /opt/stack/cloudpulse/ && python setup.py install"
+  shell: "cd {{OPENSTACK_DIR}}/cloudpulse/ && python setup.py install"
 
 - name: "Create cloudpulse server config"
-  template: src=cloudpulse.conf dest=/opt/stack/cloudpulse/etc/cloudpulse/cloudpulse.conf
+  template: src=cloudpulse.conf dest="{{OPENSTACK_DIR}}/cloudpulse/etc/cloudpulse/cloudpulse.conf"
   run_once: True
 
 - name: "Starting cloudpulse server"
-  shell: "nohup cloudpulse-server --config-file /opt/stack/cloudpulse/etc/cloudpulse/cloudpulse.conf > /tmp/cloudpulse.log 2>&1 &"
+  shell: "nohup cloudpulse-server --config-file {{OPENSTACK_DIR}}/cloudpulse/etc/cloudpulse/cloudpulse.conf > /tmp/cloudpulse.log 2>&1 &"
   run_once: True
 

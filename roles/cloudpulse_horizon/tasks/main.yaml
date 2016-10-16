@@ -1,0 +1,14 @@
+---
+- name: "Clonning cloudpulse-horizon"
+  git:
+    repo: "{{CLOUDPULSE_HORIZON_REPO}}"
+    dest: "{{OPENSTACK_DIR}}/cloudpulse-horizon"
+
+- name: "Install python-cloudpulse client"
+  shell: "{{OPENSTACK_DIR}}/cloudpulse-horizon && python setup.py install"
+
+- name: "Enabling panel"
+  shell: "cp {{OPENSTACK_DIR}}/cloudpulse-horizon/cloudpulse_horizon/enabled/*.py {{OPENSTACK_DIR}}/horizon/openstack_dashboard/local/enabled"
+
+- name: "Restarting apache"
+  service: name=apache2 state=restarted

@@ -3,3 +3,4 @@ OS_USERNAME: admin
 OS_PASSWORD: nova
 OS_AUTH_URL: "http://192.168.230.130:5000/v2.0"
 OS_REGION: RegionOne
+

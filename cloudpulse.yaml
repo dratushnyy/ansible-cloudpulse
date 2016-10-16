@@ -9,3 +9,4 @@
     - openstack_service
     - cloudpulse_server
     - cloudpulse_client
+    - cloudpulse_horizon

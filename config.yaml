@@ -9,3 +9,5 @@ CLOUDPULSE_PUBLIC_PORT: 9999
 CLOUDPULSE_INTERNAL_PORT: 9999
 CLOUDPULSE_ADMIN_PORT: 9999
 CLOUDPULSE_REPO: https://github.com/openstack/cloudpulse.git
+CLOUDPULSE_HORIZON_REPO: https://github.com/dratushnyy/cloudpulse-horizon.git
+OPENSTACK_DIR: "/opt/stack"
